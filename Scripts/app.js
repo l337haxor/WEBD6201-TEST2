@@ -108,6 +108,29 @@ let app;
 
         // Task 1 a
         $("#newTaskButton").on("click", function(){
+
+            let userInput = $("#taskTextInput").val();
+            
+            if(userInput != "")
+            {
+            let newTaskContainer  = `
+            <li class="list-group-item" id="task">
+                        <span id="taskText">${userInput}</span>
+                        <span class="float-right">
+                          <button class="btn btn-outline-primary btn-sm editButton"><i class="fas fa-edit"></i>
+                          <button class="btn btn-outline-danger btn-sm deleteButton"><i class="fas fa-trash-alt"></i></button>
+                        </span>
+                        <input type="text" class="form-control edit-task editTextInput">
+                      </li>`;
+
+            //newTaskContainer.firstChild.textContent =  userInput;         
+            $("#taskList").append(newTaskContainer);  
+
+            }
+            else
+            {
+                console.log("Text area empty!");
+            }
             
         });
 
@@ -118,7 +141,9 @@ let app;
 
         // Task 1 c
         $("ul").on("click", ".deleteButton", function(){
-           
+
+           //let ul = 
+
         });
     }
 
