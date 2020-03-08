@@ -138,23 +138,29 @@ let app;
         // Task 1 b
         $("ul").on("click", ".editButton", function(e){
 
+            //hook onto the nearest edit container
             let editText = this.closest("li").lastElementChild;
-            
-            $(".edit-task").show();
-            console.log(this.closest("li").lastElementChild);
+            let nearestSpan = this.closest("li").firstElementChild;
+            console.log(nearestSpan);
+            //show the hidden edit container element
+            $(editText).show();
+         
             
             $(document).on('keypress',function(e) {
                 if(e.which == 13) {
+                    //get the user input from the edit input
                     let userInput = $(".editTextInput").val();
-                    $(".editTextInput").val() = userInput;
-                    this.closest("input").hide();
+                    //hide the edit container
+                    $(editText).hide();
+                    //update the proper edit task text
+                    nearestSpan.textContent = userInput; 
                 }
             });
         });
 
         // Task 1 c
         $("ul").on("click", ".deleteButton", function(){
-
+            //remove the proper edit task element
            this.closest('li').remove();
 
         });
