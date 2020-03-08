@@ -109,8 +109,9 @@ let app;
         // Task 1 a
         $("#newTaskButton").on("click", function(){
 
+            //store the user input
             let userInput = $("#taskTextInput").val();
-            
+            //Create new task if the input is not blank
             if(userInput != "")
             {
             let newTaskContainer  = `
@@ -123,7 +124,7 @@ let app;
                         <input type="text" class="form-control edit-task editTextInput">
                       </li>`;
 
-            //newTaskContainer.firstChild.textContent =  userInput;         
+            //add the new task to the list
             $("#taskList").append(newTaskContainer);  
 
             }
@@ -135,14 +136,26 @@ let app;
         });
 
         // Task 1 b
-        $("ul").on("click", ".editButton", function(){
-           
+        $("ul").on("click", ".editButton", function(e){
+
+            let editText = this.closest("li").lastElementChild;
+            
+            $(".edit-task").show();
+            console.log(this.closest("li").lastElementChild);
+            
+            $(document).on('keypress',function(e) {
+                if(e.which == 13) {
+                    let userInput = $(".editTextInput").val();
+                    $(".editTextInput").val() = userInput;
+                    this.closest("input").hide();
+                }
+            });
         });
 
         // Task 1 c
         $("ul").on("click", ".deleteButton", function(){
 
-           //let ul = 
+           this.closest('li').remove();
 
         });
     }
