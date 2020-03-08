@@ -111,9 +111,8 @@ let app;
 
             //store the user input
             let userInput = $("#taskTextInput").val();
-            //Create new task if the input is not blank
-            if(userInput != "")
-            {
+            
+            //New task template
             let newTaskContainer  = `
             <li class="list-group-item" id="task">
                         <span id="taskText">${userInput}</span>
@@ -126,13 +125,6 @@ let app;
 
             //add the new task to the list
             $("#taskList").append(newTaskContainer);  
-
-            }
-            else
-            {
-                console.log("Text area empty!");
-            }
-            
         });
 
         // Task 1 b
@@ -140,12 +132,12 @@ let app;
 
             //hook onto the nearest edit container
             let editText = this.closest("li").lastElementChild;
+            //hook onto the nearest span element
             let nearestSpan = this.closest("li").firstElementChild;
-            console.log(nearestSpan);
             //show the hidden edit container element
             $(editText).show();
          
-            
+            //When enter is pressed
             $(document).on('keypress',function(e) {
                 if(e.which == 13) {
                     //get the user input from the edit input
@@ -160,8 +152,13 @@ let app;
 
         // Task 1 c
         $("ul").on("click", ".deleteButton", function(){
-            //remove the proper edit task element
-           this.closest('li').remove();
+
+            //ask user to confirm delete
+            if(confirm("Are You Sure?"))
+            {
+                //remove the proper edit task element
+                this.closest('li').remove();
+            }
 
         });
     }
